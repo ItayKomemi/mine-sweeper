@@ -1,0 +1,49 @@
+
+
+body{ 
+    background-color: black
+}
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.cells td{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+     
+}
+
+#board {
+    border : 10px , solid , darkcyan
+}
+
+tbody:hover {
+    color: aqua;
+    cursor: pointer;
+}
+table {
+    background-color: gray;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;   
+     
+}
+button{
+    margin-left: 50%;
+    margin-right: 50%;
+    /* margin-right: auto; */
+    margin-top: 50px;
+    margin-bottom: none;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    
+}
+.is-shown {
+    color: rgb(26, 150, 26);
+}
