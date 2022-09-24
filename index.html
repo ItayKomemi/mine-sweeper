@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,13 @@
     <title>The Mine Sweeper</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body onload="initGame()">
 
     <h1>Welcome to the mine sweeper</h1>
     <button onclick="initGame()">😀</button>
 
-    <div class="cells">
+    <div>
         <table class="not-seen">
 
             <tbody onclick="cellClicked(cell, i , j)"></tbody>
@@ -23,4 +25,5 @@
     <script src="js/main.js"></script>
     <script src="js/utils.js"></script>
 </body>
+
 </html>

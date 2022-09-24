@@ -1,6 +1,6 @@
 'use strict'
 
-const G_Rows = 4
+const G_ROWS = 4
 const G_COLS = 4
 const MINE = '💣'
 
@@ -19,41 +19,53 @@ function initGame() {
     gBoard = buildBoard()
     renderBoard(gBoard)
     gBoard.isShown = false
-
+    
+    var elCell = document.querySelector('tbody td')
+    elCell.innerHTML = ' '
 }
 
 function buildBoard() {
     var board = []
-    for (var i = 0; i < G_Rows; i++) {
+    for (var i = 0; i < G_ROWS; i++) {
         board[i] = []
         for (var j = 0; j < G_COLS; j++) {
-        // gBoard.push(board[i][j])
-        if (board === MINE) gBoard.isMine = true
-        board[i][j] = (Math.random() > 1) ? MINE : ' '
+            // gBoard.push(board[i][j])
+            // if (board[i][j] === MINE) gBoard.isMine = true
+            // board[i][j] = (Math.random() > 0.8) ? MINE : ' '
+            board[i][j] = gBoard
             
         }
     }
     // console.log(board)
-    
+
     return board
 }
 
 function renderBoard(board) {
     var strHtml = '<table><tbody >\n'
+
+
+    
+    if (gBoard.isShown === false) {
+        gBoard.document.querySelector('tbody td')
+        gBoard.classList.add('.not-seen')
+    }
+    
     
     for (var i = 0; i < board.length; i++) {
         strHtml += `\n<tr>\n`
         var rows = board[i]
         for (var j = 0; j < board[0].length; j++) {
+            var cell = rows[j]
+            
             
             board[0][0] = MINE
             board[1][1] = MINE
+            const className = `cell ${i} + cell- ${j}`
+            strHtml += `\t<td onclick="cellClicked(gBoard, ${i} , ${j})" class="${className}"
             
-            var cell = rows[j]
-            const className = `cell ${i} + cell- ${j}` 
-            strHtml += `\t<td onclick="cellClicked(cell, i , j)}" class="${className}style="not-seen">${cell = setMinesNegsCount(gBoard , i , j) }</td>\t`
-            // if (cell[j] === MINE) gBoard.isMine = true
-            // if (i === 0 && j === 0 || i === 1 && j === 1)
+            >${cell = setMinesNegsCount(gBoard, i, j)}</td>\t`
+            // if (cell === MINE) gBoard.isMine = true
         }
         strHtml += '</tr>\n'
     }
@@ -62,30 +74,43 @@ function renderBoard(board) {
     strHtml += '</tbody></table>'
     // console.table(cell);
     
+    
+    
     var elMat = document.querySelector('div')
     elMat.innerHTML = strHtml
-    gBoard.isShown = document.querySelector('tbody')
-    gBoard.isShown.classList.add('.not-seen')
-
-}
-
-
-function cellClicked(cell, i , j){
-    var cell = gBoard[i][j]
-    gBoard.isShown = true
-    checkGameOver()
-    var cell = document.querySelector('tbody')
-    cell.classList.add('is-clicked')
-    console.log(cell, i , j);
     
 }
 
-function checkGameOver(){
+function cellClicked(cell, i, j) {
     
-    if (clickedCell === MINE){
-        
+    if (gBoard[i][j] === MINE) {
         gBoard.isMine = true
-        console.log(cell , i , j)
-        return console.log('game-over');
-    } 
+        
+        checkGameOver(gBoard[i][j])
+        return gBoard[i][j]
+    } else {
+        
+        gBoard.isShown = true
+        var cell = gBoard[i][j]
+        // cell = document.querySelector('tbody td')
+        // cell.innerText = ''
+        
+        var button = document.querySelector('button')
+        button.innerText = '😀'
+        console.log(cell, i, j)
+        return cell
+    }
 }
+
+function checkGameOver(board) {
+
+    var button = document.querySelector('button')
+    button.innerText = '😭 you lost'
+    console.log('Lost')
+
+    initGame()
+    return board
+
+
+}
+
