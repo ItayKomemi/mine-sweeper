@@ -1,3 +1,4 @@
+
 body {
     background-color: black
 }
@@ -13,7 +14,7 @@ tbody td {
     width: 30px;
     height: 30px;
     text-align: center;
-
+    
 }
 
 tbody td:hover {
@@ -21,19 +22,6 @@ tbody td:hover {
     color: aqua;
 }
 
-table {
-
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2px;
-    width: 200px;
-    height: 200px;
-
-    /* border-radius: 20px; */
-    /* border: 20px, dotted, blue */
-
-
-}
 
 button {
     margin-left: 40%;
@@ -46,13 +34,28 @@ button {
 
 }
 
+table {
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2px;
+    width: 200px;
+    height: 200px;
+    
+
+    /* border-radius: 20px; */
+    /* border: 20px, dotted, blue */
+
+
+}
 .is-clicked {
     background-color: antiquewhite;
     
 }
 
-.is-seen{
-    background-color: blue;
+.mine{
+    background-color: red;
+    
 }
 
 .not-seen {

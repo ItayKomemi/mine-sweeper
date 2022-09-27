@@ -6,12 +6,11 @@ const MINE = '💣'
 
 
 var gBoard = {
-
     minesAroundCount: 0,
     isShown: false,
     isMine: false,
     isMarked: false
-}
+} 
 
 
 
@@ -20,8 +19,7 @@ function initGame() {
     renderBoard(gBoard)
     gBoard.isShown = false
     
-    var elCell = document.querySelector('tbody td')
-    elCell.innerHTML = ' '
+
 }
 
 function buildBoard() {
@@ -30,87 +28,99 @@ function buildBoard() {
         board[i] = []
         for (var j = 0; j < G_COLS; j++) {
             // gBoard.push(board[i][j])
-            // if (board[i][j] === MINE) gBoard.isMine = true
-            // board[i][j] = (Math.random() > 0.8) ? MINE : ' '
-            board[i][j] = gBoard
+            // var num = Math.random()
+            // if(num > 0.92){
+                //     board[i][j] = -1 // -1 is the value of a mine.
+                // }else{
+                    //     board[i][j] = 0
+                    // }
+                    board[i][j] = gBoard
+                    
+                }
+            }
+            // console.log(board)
             
+            return board
         }
-    }
-    // console.log(board)
-
-    return board
-}
-
-function renderBoard(board) {
-    var strHtml = '<table><tbody >\n'
-
-
-    
-    if (gBoard.isShown === false) {
-        gBoard.document.querySelector('tbody td')
-        gBoard.classList.add('.not-seen')
-    }
-    
-    
-    for (var i = 0; i < board.length; i++) {
-        strHtml += `\n<tr>\n`
-        var rows = board[i]
-        for (var j = 0; j < board[0].length; j++) {
-            var cell = rows[j]
+        
+        function renderBoard(board) {
+            var strHtml = '<table><tbody >\n'
             
             
-            board[0][0] = MINE
-            board[1][1] = MINE
-            const className = `cell ${i} + cell- ${j}`
-            strHtml += `\t<td onclick="cellClicked(gBoard, ${i} , ${j})" class="${className}"
             
-            >${cell = setMinesNegsCount(gBoard, i, j)}</td>\t`
-            // if (cell === MINE) gBoard.isMine = true
-        }
-        strHtml += '</tr>\n'
-    }
-    // console.log(setMinesNegsCount(gBoard , i , j));
-    // console.log(gBoard.isMine);
-    strHtml += '</tbody></table>'
-    // console.table(cell);
-    
-    
-    
-    var elMat = document.querySelector('div')
-    elMat.innerHTML = strHtml
-    
+            for (var i = 0; i < board.length; i++) {
+                strHtml += `\n<tr>\n`
+                var rows = board[i]
+                for (var j = 0; j < board[0].length; j++) {
+                    
+                    // gBoard[i][j] = setMinesNegsCount(board,i,j) 
+                    var cell = rows[j]
+                    board[0][0] = -1
+                    board[1][1] = -1
+                    
+                    // const className = `cell ${i} + cell- ${j}`
+                    strHtml += `\t<td onclick="cellClicked(gBoard, ${i} , ${j})">${cell = ' '}</td>\t`
+                    
+                    // if (cell === MINE) gBoard.isMine = true
+                    // setMinesNegsCount(gBoard,i,j)
+                }
+                strHtml += '</tr>\n'
+            }
+            // console.log(setMinesNegsCount(gBoard , i , j));
+            // console.log(gBoard.isMine);
+            strHtml += '</tbody></table>'
+            // console.table(cell);
+            
+            var elMat = document.querySelector('div')
+            elMat.innerHTML = strHtml
+            
+            // var button = document.querySelector('button')
+            // button.innerText = '😀'
+            
+            
 }
 
 function cellClicked(cell, i, j) {
     
-    if (gBoard[i][j] === MINE) {
-        gBoard.isMine = true
-        
-        checkGameOver(gBoard[i][j])
-        return gBoard[i][j]
-    } else {
-        
-        gBoard.isShown = true
-        var cell = gBoard[i][j]
+    
+    // showCell.clsassList.add('not-seen')
+    
+    gBoard.isMarked = true
+    gBoard.isShown = true
+    
+    var cell = gBoard[i][j]
+    
+    
+    if (cell === -1) {
+        checkGameOver()
         // cell = document.querySelector('tbody td')
-        // cell.innerText = ''
+        // cell.style.color = 'red'
+        cell = document.querySelector('tbody td')
+        cell.style.color = 'red'
+        cell.innerHTML = MINE
+        console.log(cell)
+    } else {
+
+        // gBoard[i][j].isShown = true
+        // var cell = gBoard[i][j]
+
+        cell = document.querySelector('tbody td')
+        cell.innerHTML = setMinesNegsCount(gBoard,i,j)
         
         var button = document.querySelector('button')
         button.innerText = '😀'
-        console.log(cell, i, j)
-        return cell
+        console.log( cell, i, j)
+        
     }
 }
 
-function checkGameOver(board) {
+function checkGameOver() {
 
     var button = document.querySelector('button')
     button.innerText = '😭 you lost'
-    console.log('Lost')
+    console.log('You Lost')
 
     initGame()
-    return board
-
 
 }
 

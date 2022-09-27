@@ -23,18 +23,23 @@
 
 function setMinesNegsCount(board, rowIdx, colIdx) {
     var countingMines = 0
+    if(gBoard [rowIdx][colIdx] === -1){
+        return -1
+    }
+
     for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
         if (i < 0 || i >= board.length) continue
-
+        // var showCell = document.querySelector('td')
         for (var j = colIdx - 1; j <= colIdx + 1; j++) {
             if (j < 0 || j >= board[0].length) continue
             if (i === rowIdx && j === colIdx) continue
-
-            if (board[i][j] === MINE) countingMines++ 
+            
+            if (board[i][j] === -1) countingMines++
             
             // board[i][j] = countingMines
         }
-    }
+        // showCell.innerHTML = countingMines
+    }return countingMines
     // console.log(countingMines);
-    return countingMines
+    // return countingMines
 }
